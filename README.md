@@ -23,7 +23,7 @@ git clone git@github.com:pabloreina97/project-to-text.git
 Crea un entorno virtual dentro de la carpeta del proyecto para mantener las dependencias aisladas:
 
 ```bash
-python -m venv venv
+python -m venv .venv
 ```
 
 Para activarlo:
