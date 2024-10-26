@@ -2,28 +2,34 @@ import os
 import sys
 import pyperclip
 
+
 def copy_files_with_extensions_to_clipboard(extensions):
     # Variable que contendrá todo el contenido de los archivos
     clipboard_content = ""
 
     # Recorrer todos los directorios y archivos recursivamente
     for root, dirs, files in os.walk(os.getcwd()):
+        # Excluir carpetas que comienzan por "."
+        dirs[:] = [d for d in dirs if not d.startswith(".")]
+
         for filename in files:
             # Comprobar si el archivo tiene alguna de las extensiones especificadas
             if any(filename.endswith(ext) for ext in extensions):
                 # Ruta completa del archivo
                 file_path = os.path.join(root, filename)
-                
+
                 # Añadir el encabezado con el nombre del archivo
-                clipboard_content += f"\n---------------------\n{file_path}\n---------------------\n"
-                
+                clipboard_content += f"\n---------------------\n{
+                    file_path}\n---------------------\n"
+
                 # Leer el archivo y añadir su contenido
-                with open(file_path, 'r') as infile:
+                with open(file_path, 'r', encoding='utf-8') as infile:
                     clipboard_content += infile.read()
-    
+
     # Copiar el contenido al portapapeles
     pyperclip.copy(clipboard_content)
     print("Contenido copiado al portapapeles.")
+
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
