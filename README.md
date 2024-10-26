@@ -106,3 +106,5 @@ ptotext .txt .md
 
 ```
 Este comando buscará todos los archivos con las extensiones .txt y .md en la carpeta actual y en sus subcarpetas, y copiará su contenido al portapapeles.
+
+También puedes usar `*` para todas las extensiones.
