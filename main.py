@@ -13,8 +13,8 @@ def copy_files_with_extensions_to_clipboard(extensions):
         dirs[:] = [d for d in dirs if not d.startswith(".")]
 
         for filename in files:
-            # Comprobar si el archivo tiene alguna de las extensiones especificadas
-            if any(filename.endswith(ext) for ext in extensions):
+            # Comprobar si debe incluir todos los archivos o solo los de las extensiones específicas
+            if "*" in extensions or any(filename.endswith(ext) for ext in extensions):
                 # Ruta completa del archivo
                 file_path = os.path.join(root, filename)
 
@@ -32,7 +32,7 @@ def copy_files_with_extensions_to_clipboard(extensions):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
+    if len(sys.argv) < 2 and sys.argv[1] != "*":
         print("Uso: python script.py <ext1> <ext2> ...")
     else:
         # Leer las extensiones de los argumentos de la línea de comandos
