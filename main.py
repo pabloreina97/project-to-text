@@ -10,7 +10,8 @@ def copy_files_with_extensions_to_clipboard(extensions):
     # Recorrer todos los directorios y archivos recursivamente
     for root, dirs, files in os.walk(os.getcwd()):
         # Excluir carpetas que comienzan por "."
-        dirs[:] = [d for d in dirs if not d.startswith(".")]
+        dirs[:] = [d for d in dirs if not d.startswith(
+                ".") and not d.startswith("__")]
 
         for filename in files:
             # Comprobar si debe incluir todos los archivos o solo los de las extensiones específicas
